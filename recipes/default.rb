@@ -22,7 +22,7 @@ ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
 
 unless Chef::Config[:solo]
   monitor_master = if node["monitor"]["environment_aware_search"]
-    search(:node, "chef_environment:#{node.chef_environment} AND recipes:monitor\\:\\:master").first
+    search(:node, "chef_environment:#{node["monitor"]["environment"]} AND recipes:monitor\\:\\:master").first
   else
     search(:node, 'recipes:monitor\:\:master').first
   end
